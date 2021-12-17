@@ -3,14 +3,15 @@ use std::collections::HashMap;
 fn main() {
 
   let line = "2 2 + 1 -";
-  let ops = "+*-/";
-  let mut bin_num_ops: HashMap<String, fn(i32,i32)->i32> = HashMap::new();
+  let ops = "+*-/%";
+  let mut bin_num_ops: HashMap<String, fn(f32,f32)->f32> = HashMap::new();
   bin_num_ops.insert("+".to_string(), |x, y| x + y);
   bin_num_ops.insert("-".to_string(), |x, y| x - y);
   bin_num_ops.insert("*".to_string(), |x, y| x * y);
   bin_num_ops.insert("/".to_string(), |x, y| x / y);
+  bin_num_ops.insert("%".to_string(), |x, y| x % y);
   let bin_num_ops = bin_num_ops;
-  let mut stack: Vec<i32> = Vec::new();
+  let mut stack: Vec<f32> = Vec::new();
   println!("{:?}",stack);
 
   let line_parse = line.split(' ').collect::<Vec<&str>>();
@@ -25,7 +26,7 @@ fn main() {
       println!("{:?}",stack);
 
     } else{
-      stack.push(t.to_string().parse::<i32>().unwrap());
+      stack.push(t.to_string().parse::<f32>().unwrap());
       println!("{:?}",stack);
     }
 
